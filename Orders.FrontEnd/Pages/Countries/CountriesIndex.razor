@@ -21,11 +21,11 @@
                             @country.Name
                         </td>
                         <td>
-                            <a href="" class="btn btn-warning">Editar</a>
-                            <button class="btn btn-danger">Borrar</button>
+                            <a href="/countries/edit/@country.Id" class="btn btn-warning">Editar</a>
+                            <button @onclick="() => DeleteAsync(country)" class="btn btn-danger">Borrar</button>
                         </td>
                     </tr>
-                })
+                }
             </tbody>
         </table>
     </Body>
