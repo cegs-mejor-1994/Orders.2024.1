@@ -31,33 +31,5 @@
     </Body>
 </GenericList>
 
-@*@if (Countries == null)
-{
-    <p>Cargando...</p>
-}
-else
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Pais</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var country in Countries!)
-            {
-                <tr>
-                    <td>
-                        @country.Name
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-warning">Editar</a>
-                        <button class="btn btn-danger">Borrar</button>
-                    </td>
-                </tr>
 
-            }
-        </tbody>
-    </table>
-}*@
 
