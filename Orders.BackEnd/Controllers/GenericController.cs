@@ -13,7 +13,7 @@ namespace Orders.BackEnd.Controllers
         }
 
         [HttpGet]
-        public virtual async Task<IActionResult> GetActionResultAsync()
+        public virtual async Task<IActionResult> GetAsync()
         {
             var action = await _unitOfWork.GetAsync();
             if (action.WasSuccess)

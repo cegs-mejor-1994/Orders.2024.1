@@ -20,10 +20,10 @@ namespace Orders.BackEnd.Data
 
         private async Task CheckCategoriesAsync()
         {
-            if (!_context.Countries.Any())
+            if (!_context.Categories.Any())
             {
-                _context.Countries.Add(new Country { Name = "Ecuador" });
-                _context.Countries.Add(new Country { Name = "Mexico" });
+                _context.Categories.Add(new Category { Name = "Autos" });
+                _context.Categories.Add(new Category { Name = "Herramientas" });
             }
 
             await _context.SaveChangesAsync();
@@ -31,12 +31,62 @@ namespace Orders.BackEnd.Data
 
         private async Task CheckCountriesAsync()
         {
-            if (!_context.Categories.Any())
+            if (!_context.Countries.Any())
             {
-                _context.Categories.Add(new Category { Name = "Autos" });
-                _context.Categories.Add(new Category { Name = "Herramientas" });
+                _context.Countries.Add(new Country
+                {
+                    Name = "Colombia",
+                    States = new List<State>()
+                    {
+                        new State()
+                        {
+                            Name = "Antioquia",
+                            Cities = new List<City>()
+                            {
+                                new City() { Name = "Medellin" },
+                                new City() { Name = "Envigado" },
+                                new City() { Name = "Itagui" }
+                            }
+                        },
+                        new State()
+                        {
+                            Name = "Cundinamarca",
+                            Cities = new List<City>()
+                            {
+                                new City() { Name = "Bogota" },
+                                new City() { Name = "Chia" },
+                                new City() { Name = "Facatativa" }
+                            }
+                        },
+                    }
+                });
+                _context.Countries.Add(new Country
+                {
+                    Name = "USA",
+                    States = new List<State>()
+                    {
+                        new State()
+                        {
+                            Name = "California",
+                            Cities = new List<City>()
+                            {
+                                new City() { Name = "Los Angeles" },
+                                new City() { Name = "San Diego" },
+                                new City() { Name = "San Francisco" }
+                            }
+                        },
+                        new State()
+                        {
+                            Name = "Illinois",
+                            Cities = new List<City>()
+                            {
+                                new City() { Name = "Chicago" },
+                                new City() { Name = "Springfield" }
+                            }
+                        },
+                    }
+                });
             }
-
             await _context.SaveChangesAsync();
         }
     }
