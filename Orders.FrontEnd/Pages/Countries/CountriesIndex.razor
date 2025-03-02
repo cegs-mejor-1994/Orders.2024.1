@@ -1,5 +1,5 @@
 ﻿@page "/countries"
-
+<PageTitle>Paises</PageTitle>
 <GenericList MyList="Countries">
     <Body>
         <h3>Paises</h3>
@@ -21,8 +21,9 @@
                             @country.Name
                         </td>
                         <td>
-                            <a href="/countries/edit/@country.Id" class="btn btn-warning">Editar</a>
-                            <button @onclick="() => DeleteAsync(country)" class="btn btn-danger">Borrar</button>
+                            <a href="/countries/edit/@country.Id" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="/countries/details/@country.Id" class="btn btn-info btn-sm">Detalles</a>
+                            <button @onclick="() => DeleteAsync(country)" class="btn btn-sm btn-danger">Borrar</button>
                         </td>
                     </tr>
                 }

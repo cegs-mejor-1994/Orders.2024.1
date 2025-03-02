@@ -1,5 +1,6 @@
 ﻿@page "/categories"
 
+<PageTitle>Categorias</PageTitle>
 <GenericList MyList="Categories">
     <Body>
         <h3>Categorias</h3>
@@ -21,8 +22,9 @@
                             @category.Name
                         </td>
                         <td>
-                            <a href="/categories/edit/@category.Id" class="btn btn-warning">Editar</a>
-                            <button @onclick="() => DeleteAsync(category)" class="btn btn-danger">Borrar</button>
+                            <a href="/categories/edit/@category.Id" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="/categories/details/@category.Id" class="btn btn-info btn-sm">Detalles</a>
+                            <button @onclick="() => DeleteAsync(category)" class="btn btn-sm btn-danger">Borrar</button>
                         </td>
                     </tr>
                 }
