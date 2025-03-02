@@ -3,14 +3,16 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Components;
 using Orders.Shared.Entities;
+using Orders.Shared.Interfaces;
 
-namespace Orders.FrontEnd.Pages.Categories
+namespace Orders.FrontEnd.Shared
 {
-    public partial class CategoryForm
+    public partial class FormWithName<TModel> where TModel : IEntityWithName
     {
         private EditContext editContext = null!;
 
-        [EditorRequired, Parameter] public Category Category { get; set; } = null!;
+        [EditorRequired, Parameter] public TModel Model { get; set; } = default!;
+        [EditorRequired, Parameter] public string Label { get; set; } = null!;
         [EditorRequired, Parameter] public EventCallback OnValidSubmit { get; set; }
         [EditorRequired, Parameter] public EventCallback ReturnAction { get; set; }
         [Inject] public SweetAlertService SweetAlertService { get; set; } = null!;
@@ -18,7 +20,7 @@ namespace Orders.FrontEnd.Pages.Categories
 
         protected override void OnInitialized()
         {
-            editContext = new(Category);
+            editContext = new(Model!);
         }
 
         private async Task OnBeforeInternalNavigation(LocationChangingContext context)
