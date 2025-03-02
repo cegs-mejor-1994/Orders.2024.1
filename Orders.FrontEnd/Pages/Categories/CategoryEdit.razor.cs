@@ -8,46 +8,46 @@ namespace Orders.FrontEnd.Pages.Categories
 {
     public partial class CategoryEdit
     {
-        private Category? category;
-        private CategoryForm? categoryForm;
-        [Inject] private IRepository repository { get; set; } = null!;
-        [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
-        [Inject] private NavigationManager navigationManager { get; set; } = null!;
+        private Category? Category;
+        private CategoryForm? CategoryForm;
+        [Inject] private IRepository Repository { get; set; } = null!;
+        [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
+        [Inject] private NavigationManager NavigationManager { get; set; } = null!;
         [Parameter] public int Id { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
-            var responseHttp = await repository.GetAsync<Category>($"api/categories/{Id}");
+            var responseHttp = await Repository.GetAsync<Category>($"api/categories/{Id}");
 
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    navigationManager.NavigateTo("/categories");
+                    NavigationManager.NavigateTo("/categories");
                 }
                 else
                 {
                     var messageError = await responseHttp.GetErrorMessageAsync();
-                    await sweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
+                    await SweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
                 }
             }
             else
             {
-                category = responseHttp.Response;
+                Category = responseHttp.Response;
             }
         }
 
         private async Task EditAsync()
         {
-            var responseHttp = await repository.PutAsync("/api/categories", category);
+            var responseHttp = await Repository.PutAsync("/api/categories", Category);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
-                await sweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
+                await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
             Return();
-            var toast = sweetAlertService.Mixin(new SweetAlertOptions
+            var toast = SweetAlertService.Mixin(new SweetAlertOptions
             {
                 Toast = true,
                 Position = SweetAlertPosition.BottomEnd,
@@ -59,8 +59,8 @@ namespace Orders.FrontEnd.Pages.Categories
 
         private void Return()
         {
-            categoryForm!.FormPostedSuccessfully = true;
-            navigationManager.NavigateTo("/categories");
+            CategoryForm!.FormPostedSuccessfully = true;
+            NavigationManager.NavigateTo("/categories");
         }
     }
 }

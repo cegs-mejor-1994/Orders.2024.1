@@ -7,46 +7,46 @@ namespace Orders.FrontEnd.Pages.Countries
 {
     public partial class CountryEdit
     {
-        private Country? country;
-        private CountryForm? countryForm;
-        [Inject] private IRepository repository { get; set; } = null!;
-        [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
-        [Inject] private NavigationManager navigationManager { get; set; } = null!;
+        private Country? Country;
+        private CountryForm? CountryForm;
+        [Inject] private IRepository Repository { get; set; } = null!;
+        [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
+        [Inject] private NavigationManager NavigationManager { get; set; } = null!;
         [Parameter] public int Id { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
-            var responseHttp = await repository.GetAsync<Country>($"api/countries/{Id}");
+            var responseHttp = await Repository.GetAsync<Country>($"api/countries/{Id}");
 
             if (responseHttp.Error)
             {
                 if(responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    navigationManager.NavigateTo("/countries");
+                    NavigationManager.NavigateTo("/countries");
                 }
                 else
                 {
                     var messageError = await responseHttp.GetErrorMessageAsync();
-                    await sweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
+                    await SweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
                 }
             }
             else
             {
-                country = responseHttp.Response;
+                Country = responseHttp.Response;
             }
         }
 
         private async Task EditAsync()
         {
-            var responseHttp = await repository.PutAsync("/api/countries", country);
+            var responseHttp = await Repository.PutAsync("/api/countries", Country);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
-                await sweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
+                await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
                 return;
             }
             Return();
-            var toast = sweetAlertService.Mixin(new SweetAlertOptions
+            var toast = SweetAlertService.Mixin(new SweetAlertOptions
             {
                 Toast = true,
                 Position = SweetAlertPosition.BottomEnd,
@@ -58,8 +58,8 @@ namespace Orders.FrontEnd.Pages.Countries
 
         private void Return()
         {
-            countryForm!.FormPostedSuccessfully = true;
-            navigationManager.NavigateTo("/countries");
+            CountryForm!.FormPostedSuccessfully = true;
+            NavigationManager.NavigateTo("/countries");
         }   
     }
 }

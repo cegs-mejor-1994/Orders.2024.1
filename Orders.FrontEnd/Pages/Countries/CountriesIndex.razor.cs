@@ -8,8 +8,8 @@ namespace Orders.FrontEnd.Pages.Countries
     public partial class CountriesIndex
     {
         [Inject] private IRepository Repository { get; set; } = null!;
-        [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
-        [Inject] private NavigationManager navigationManager { get; set; } = null!;
+        [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
+        [Inject] private NavigationManager NavigationManager { get; set; } = null!;
         public List<Country>? Countries { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -23,7 +23,7 @@ namespace Orders.FrontEnd.Pages.Countries
             if (responseHttp.Error)
             {
                 var messageError = await responseHttp.GetErrorMessageAsync();
-                await sweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
+                await SweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
                 return;
             }
             Countries = responseHttp.Response;
@@ -31,7 +31,7 @@ namespace Orders.FrontEnd.Pages.Countries
 
         private async Task DeleteAsync(Country country)
         {
-            var result = await sweetAlertService.FireAsync(new SweetAlertOptions
+            var result = await SweetAlertService.FireAsync(new SweetAlertOptions
             {
                 Title = "Confirmacion",
                 Text = $"¿Estas seguro que quieres borrar el pais: {country.Name}?",
@@ -49,17 +49,17 @@ namespace Orders.FrontEnd.Pages.Countries
             {
                 if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    navigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("/");
                 }
                 else
                 {
                     var messageError = await responseHttp.GetErrorMessageAsync();
-                    await sweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
+                    await SweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
                 }
                 return;
             }
             await LoadAsync();
-            var toast = sweetAlertService.Mixin(new SweetAlertOptions
+            var toast = SweetAlertService.Mixin(new SweetAlertOptions
             {
                 Toast = true,
                 Position = SweetAlertPosition.BottomEnd,

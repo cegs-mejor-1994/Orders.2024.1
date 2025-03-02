@@ -8,23 +8,23 @@ namespace Orders.FrontEnd.Pages.Categories
 {
     public partial class CategoryCreate
     {
-        private Category category = new();
-        private CategoryForm? categoryForm;
-        [Inject] private IRepository repository { get; set; } = null!;
-        [Inject] private SweetAlertService sweetAlertService { get; set; } = null!;
-        [Inject] private NavigationManager navigationManager { get; set; } = null!;
+        private Category Category = new();
+        private CategoryForm? CategoryForm;
+        [Inject] private IRepository Repository { get; set; } = null!;
+        [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
+        [Inject] private NavigationManager NavigationManager { get; set; } = null!;
 
         private async Task CreateAsync()
         {
-            var responseHttp = await repository.PostAsync("api/categories", category);
+            var responseHttp = await Repository.PostAsync("api/categories", Category);
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
-                await sweetAlertService.FireAsync("Error", message);
+                await SweetAlertService.FireAsync("Error", message);
                 return;
             }
             Return();
-            var toast = sweetAlertService.Mixin(new SweetAlertOptions
+            var toast = SweetAlertService.Mixin(new SweetAlertOptions
             {
                 Toast = true,
                 Position = SweetAlertPosition.BottomEnd,
@@ -36,8 +36,8 @@ namespace Orders.FrontEnd.Pages.Categories
 
         private void Return()
         {
-            categoryForm!.FormPostedSuccessfully = true;
-            navigationManager.NavigateTo("/categories");
+            CategoryForm!.FormPostedSuccessfully = true;
+            NavigationManager.NavigateTo("/categories");
         }
     }
 }
