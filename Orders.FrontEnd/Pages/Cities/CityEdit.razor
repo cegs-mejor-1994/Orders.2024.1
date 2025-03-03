@@ -1,0 +1,12 @@
+﻿@page "/cities/edit/{CityId:int}"
+
+<h3>Editar Ciudad</h3>
+
+@if (City == null)
+{
+    <Loading />
+}
+else
+{
+    <FormWithName @ref="CityForm" Label="Ciudad:" Model="City" OnValidSubmit="SaveAsync" ReturnAction="Return"/>
+}

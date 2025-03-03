@@ -1,0 +1,43 @@
+﻿@page "/states/details/{StateId:int}"
+
+@if(State == null)
+{
+    <Loading/>
+}
+else
+{
+    <PageTitle>Detalles de: @State.Name</PageTitle>
+    <h3>@State.Name</h3>
+    <div class="mb-2">
+        <a class="btn btn-primary" href="/cities/create/@StateId">Nueva Ciudad</a>
+        <a class="btn btn-success" href="/countries/details/@State.CountryId">Regresar</a>
+    </div>
+
+    <br />
+    <GenericList MyList="State.Cities!.ToList()">
+        <Body>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ciudad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var city in State.Cities!)
+                    {
+                        <tr>
+                            <td>
+                                @city.Name
+                            </td>
+                            <td>
+                                <a href="/cities/edit/@city.Id" class="btn btn-warning btn-sm">Editar</a>
+                                <button class="btn btn-danger btn-sm" @onclick="() => DeleteAsync(city)">Borrar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>            
+        </Body>
+    </GenericList>
+}
