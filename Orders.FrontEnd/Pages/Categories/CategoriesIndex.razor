@@ -3,6 +3,7 @@
 <PageTitle>Categorias</PageTitle>
 <GenericList MyList="Categories">
     <Body>
+        <Pagination CurrentPage="currentPage" TotalPages="totalPages" SelectedPage="SelectedPageAsync"/>
         <h3>Categorias</h3>
         <div class="mb-3">
             <a href="/categories/create" class="btn btn-primary">Nueva Categoria</a>
@@ -11,7 +12,7 @@
             <thead>
                 <tr>
                     <th>Categoria</th>
-                    <th>Acciones</th>
+                    <th style="width:140px">Acciones</th>
                 </tr>
             </thead>
             <tbody>

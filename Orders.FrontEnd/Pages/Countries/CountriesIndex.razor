@@ -2,6 +2,7 @@
 <PageTitle>Paises</PageTitle>
 <GenericList MyList="Countries">
     <Body>
+        <Pagination CurrentPage="currentPage" TotalPages="totalPages" SelectedPage="SelectedPageAsync"/>
         <h3>Paises</h3>
         <div class="mb-3">
             <a href="/countries/create" class="btn btn-primary">Nuevo Pais</a>
@@ -10,8 +11,8 @@
             <thead>
                 <tr>
                     <th>Pais</th>
-                    <th>Estados / Departamentos</th>
-                    <th>Acciones</th>
+                    <th style="width: 210px">Estados / Departamentos</th>
+                    <th style="width: 210px">Acciones</th>
                 </tr>
             </thead>
             <tbody>

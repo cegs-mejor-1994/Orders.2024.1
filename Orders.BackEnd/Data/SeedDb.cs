@@ -22,8 +22,25 @@ namespace Orders.BackEnd.Data
         {
             if (!_context.Categories.Any())
             {
+                _context.Categories.Add(new Category { Name = "Apple" });
                 _context.Categories.Add(new Category { Name = "Autos" });
-                _context.Categories.Add(new Category { Name = "Herramientas" });
+                _context.Categories.Add(new Category { Name = "Autos" });
+                _context.Categories.Add(new Category { Name = "Belleze" });
+                _context.Categories.Add(new Category { Name = "Calzado" });
+                _context.Categories.Add(new Category { Name = "Comida" });
+                _context.Categories.Add(new Category { Name = "Cosmeticos" });
+                _context.Categories.Add(new Category { Name = "Deportes" });
+                _context.Categories.Add(new Category { Name = "Erotica" });
+                _context.Categories.Add(new Category { Name = "Ferreteria" });
+                _context.Categories.Add(new Category { Name = "Gamer" });
+                _context.Categories.Add(new Category { Name = "Hogar" });
+                _context.Categories.Add(new Category { Name = "Jardin" });
+                _context.Categories.Add(new Category { Name = "Juguetes" });
+                _context.Categories.Add(new Category { Name = "Lenceria" });
+                _context.Categories.Add(new Category { Name = "Mascotas" });
+                _context.Categories.Add(new Category { Name = "Nutricion" });
+                _context.Categories.Add(new Category { Name = "Ropa" });                
+                _context.Categories.Add(new Category { Name = "Tecnologia" });
             }
 
             await _context.SaveChangesAsync();
