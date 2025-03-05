@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th>Categoria</th>
-                    <th style="width:140px">Acciones</th>
+                    <th style="width:250px">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +23,7 @@
                             @category.Name
                         </td>
                         <td>
-                            <a href="/categories/edit/@category.Id" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="/categories/details/@category.Id" class="btn btn-info btn-sm">Detalles</a>
+                          <a href="/categories/edit/@category.Id" class="btn btn-sm btn-warning">Editar</a>                            
                             <button @onclick="() => DeleteAsync(category)" class="btn btn-sm btn-danger">Borrar</button>
                         </td>
                     </tr>

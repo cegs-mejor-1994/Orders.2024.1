@@ -57,7 +57,7 @@ namespace Orders.FrontEnd.Pages.States
 
         private async Task<bool> LoadCitiesAsync(int page)
         {
-            var responseHttp = await Repository.GetAsync<List<City>>($"/api/cities?id={StateId}&page={page}");
+            var responseHttp = await Repository.GetAsync<List<City>>($"api/cities?id={StateId}&page={page}");
             if (responseHttp.Error)
             {
                 var message = await responseHttp.GetErrorMessageAsync();
@@ -71,7 +71,7 @@ namespace Orders.FrontEnd.Pages.States
 
         private async Task<bool> LoadStateAsync()
         {
-            var responseHttp = await Repository.GetAsync<State>($"/api/states/{StateId}");
+            var responseHttp = await Repository.GetAsync<State>($"api/states/{StateId}");
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode == HttpStatusCode.NotFound)
@@ -106,7 +106,7 @@ namespace Orders.FrontEnd.Pages.States
                 return;
             }
 
-            var responseHttp = await Repository.DeleteAsync<City>($"/api/cities/{city.Id}");
+            var responseHttp = await Repository.DeleteAsync<City>($"api/cities/{city.Id}");
             if (responseHttp.Error)
             {
                 if (responseHttp.HttpResponseMessage.StatusCode! == HttpStatusCode.NotFound)

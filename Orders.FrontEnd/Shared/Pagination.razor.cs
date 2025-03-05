@@ -4,7 +4,7 @@ namespace Orders.FrontEnd.Shared
 {
     public partial class Pagination
     {
-        private List<PageModel> Links = new();
+        private List<PageModel> Links = null!;
 
         [Parameter] public int CurrentPage { get; set; } = 1;
         [Parameter] public int TotalPages { get; set; } = 1;
@@ -80,8 +80,7 @@ namespace Orders.FrontEnd.Shared
         {
             public string Text { get; set; } = null!;
             public int Page { get; set; }
-            public bool Enable { get; set; } = true;
-            public bool Active { get; set; } = false;
+            public bool Enable { get; set; } = true;            
         }
     }
 }

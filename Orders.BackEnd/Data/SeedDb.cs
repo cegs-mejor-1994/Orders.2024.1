@@ -23,8 +23,7 @@ namespace Orders.BackEnd.Data
             if (!_context.Categories.Any())
             {
                 _context.Categories.Add(new Category { Name = "Apple" });
-                _context.Categories.Add(new Category { Name = "Autos" });
-                _context.Categories.Add(new Category { Name = "Autos" });
+                _context.Categories.Add(new Category { Name = "Autos" });                
                 _context.Categories.Add(new Category { Name = "Belleze" });
                 _context.Categories.Add(new Category { Name = "Calzado" });
                 _context.Categories.Add(new Category { Name = "Comida" });
