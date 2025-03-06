@@ -76,7 +76,6 @@ namespace Orders.BackEnd.Repositories.Implementations
                 .Where(c => c.Country!.Id == pagination.Id)
                 .AsQueryable();
 
-
             if (!string.IsNullOrWhiteSpace(pagination.Filter))
             {
                 queryable = queryable.Where(x => x.Name.ToLower().Contains(pagination.Filter.ToLower()));
